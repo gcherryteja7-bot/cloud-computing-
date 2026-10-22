@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f8fc">
+    <title>Identity check</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ClearID home">
+          <span class="brand-mark" aria-hidden="true">C</span>
+          <span>clear<span class="brand-accent">id</span></span>
+        </a>
+        <span class="secure-label"><span class="secure-dot"></span>Private session</span>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">IDENTITY CHECK</p>
+        <h1>Verify with confidence.</h1>
+        <p class="subtitle">Upload a photo of your document and a selfie. Your images are processed for this request and are not stored.</p>
+      </section>
+
+      <form id="verification-form" class="card">
+        <div class="step-heading">
+          <span class="step-number">1</span>
+          <div><h2>Choose your document</h2><p>Select the type that matches your photo ID.</p></div>
+        </div>
+        <label class="field-label" for="document-type">Document type</label>
+        <select id="document-type" name="document_type" required>
+          <option value="">Select a document</option>
+          <option value="passport">Passport</option>
+          <option value="drivers_license">Driver’s license</option>
+          <option value="aadhaar">Aadhaar</option>
+          <option value="other">Other government ID</option>
+        </select>
+
+        <div class="upload-grid">
+          <div class="upload-block">
+            <div class="step-heading">
+              <span class="step-number">2</span>
+              <div><h2>Photo of your ID</h2><p>Keep all edges and text in frame.</p></div>
+            </div>
+            <label class="upload-box" for="document-image">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <span class="upload-title" id="document-name">Choose an image</span>
+              <span class="upload-hint">JPEG, PNG or WEBP · up to 10 MB</span>
+            </label>
+            <input id="document-image" name="document_image" type="file" accept="image/jpeg,image/png,image/webp" required>
+          </div>
+          <div class="upload-block">
+            <div class="step-heading">
+              <span class="step-number">3</span>
+              <div><h2>Take a selfie</h2><p>Face the camera in good lighting.</p></div>
+            </div>
+            <label class="upload-box" for="selfie-image">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <span class="upload-title" id="selfie-name">Choose an image</span>
+              <span class="upload-hint">JPEG, PNG or WEBP · up to 10 MB</span>
+            </label>
+            <input id="selfie-image" name="selfie_image" type="file" accept="image/jpeg,image/png,image/webp" required>
+          </div>
+        </div>
+
+        <label class="field-label api-key-label" for="api-key">API key <span>(only if provided by your administrator)</span></label>
+        <input id="api-key" type="password" autocomplete="off" placeholder="Optional for local development">
+        <button id="submit-button" type="submit">
+          <span>Run identity checks</span><span aria-hidden="true">→</span>
+        </button>
+        <p class="privacy-note"><span aria-hidden="true">▣</span> Images are held in memory only for processing. Verification logs do not contain document images or OCR text.</p>
+      </form>
+
+      <section id="result" class="result card" aria-live="polite" hidden></section>
+      <p class="disclaimer">Automated image checks are preliminary and cannot confirm that a document is genuine. A human reviewer or trusted-source validation is required before making consequential decisions.</p>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
